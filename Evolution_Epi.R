@@ -53,8 +53,8 @@ p.rana_2brad_snpdist_pis <-
 p.epi_2brad_snpdist_pis <-
   epi_2brad_snpdist %>% 
   group_by(clust_threshold) %>%
-  filter(sum_var == max(sum_var)) %>%
-  ggplot(aes(x=clust_threshold, y=sum_var)) + 
+  filter(sum_pis == max(sum_pis)) %>%
+  ggplot(aes(x=clust_threshold, y=sum_pis)) + 
   geom_col() +
   scale_x_discrete(labels=epiclustlabs) +
   scale_y_continuous(labels=scales::comma, limits=c(0,1200000)) +
@@ -65,18 +65,35 @@ plot_grid(p.epi_2brad_snpdist_pis, p.rana_2brad_snpdist_pis)
 ### 2bRAD_SUMSTATS HEATMAPS ###
 p.rana_2brad_sumstats <-
   rana_2brad_sumstats %>%
-  ggplot(aes(sample, clust_threshold)) +
-  geom_tile(aes(fill=loci_assembly)) +
-  scale_y_discrete(labels=ranaclustlabs) +
-  scale_x_discrete(labels=ranalabs) +
+  ggplot(aes(clust_threshold, loci_assembly, group=sample, color=sample)) +
+  geom_line() +
+  scale_x_discrete(labels=ranaclustlabs) +
+  scale_y_continuous(labels=scales::comma, limits=c(0,200000)) +
   ggtitle("Rana_2bRAD")
   
 p.epi_2brad_sumstats <-
   epi_2brad_sumstats %>%
-  ggplot(aes(sample, clust_threshold)) +
-  geom_tile(aes(fill=loci_assembly)) +
-  scale_y_discrete(labels=epiclustlabs) +
-  scale_x_discrete(labels=epilabs) +
+  ggplot(aes(clust_threshold, loci_assembly, group=sample, color=sample)) +
+  geom_line() +
+  scale_x_discrete(labels=epiclustlabs) +
+  scale_y_continuous(labels=scales::comma, limits=c(0,200000)) +
   ggtitle("Epi_2bRAD")
 
 plot_grid(p.epi_2brad_sumstats, p.rana_2brad_sumstats)
+
+#### COMBINED PLOT
+  ggplot(data=rana_2brad_sumstats, aes(clust_threshold, loci_assembly, group=sample, color=sample)) +
+  geom_line() +
+  geom_point(shape=19) +
+  scale_y_continuous(labels=scales::comma, limits=c(0,200000)) +
+  geom_line(data=epi_2brad_sumstats, aes(clust_threshold, loci_assembly, group=sample, color=sample)) +
+  scale_x_discrete(labels=ranaclustlabs)
+  #  geom_point(shape=20)  
+
+p.epi_2brad_sumstats <-
+  epi_2brad_sumstats %>%
+  ggplot(aes(clust_threshold, loci_assembly, group=sample, color=sample)) +
+  geom_line() +
+  scale_x_discrete(labels=epiclustlabs) +
+  scale_y_continuous(labels=scales::comma, limits=c(0,200000)) +
+  ggtitle("Epi_2bRAD")
