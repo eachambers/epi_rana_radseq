@@ -19,7 +19,7 @@ ranafilenames = glob.glob('../rana2brad/*outfiles/*stats.txt')
 print ranafilenames
 
 
-# In[106]:
+# In[110]:
 
 
 def get_file_list(directory):
@@ -63,7 +63,7 @@ def pd_conversion(filename):
     return df_snpdist  
 
 def main():
-    directory='../epi2brad/*outfiles/*stats.txt'
+    directory='../epiddrad/*outfiles/*stats.txt'
     #filename='../epi2brad/clust_92_outfiles/clust_92_stats.txt'
     #directory=filename
     file_list = get_file_list(directory)
@@ -76,12 +76,6 @@ def main():
     return dfs
 
 print main()
-
-
-# In[41]:
-
-
-
 
 
 # In[12]:
@@ -149,7 +143,7 @@ print df_snpdist
 #df_snpdist.to_csv("./rana2brad_snpdist.csv")
 
 
-# In[107]:
+# In[111]:
 
 
 # The SECOND SET of data we're interested in, the summary stats
@@ -191,7 +185,7 @@ def pd_conversion(filename):
     return df_sumstats  
 
 def main():
-    directory='../epi2brad/*outfiles/*stats.txt'
+    directory='../epiddrad/*outfiles/*stats.txt'
     #filename='../rana2brad/clust_95_outfiles/clust_95_stats.txt'
     #directory=filename
     file_list = get_file_list(directory)
@@ -206,7 +200,7 @@ def main():
 print main()
 
 
-# In[105]:
+# In[114]:
 
 
 # The LAST SET that we're interested in is the LOCUS COVERAGE; this will tell us about missing data and shared loci.
@@ -223,7 +217,7 @@ def get_line_numbers(filename):
             varline=counter
 #            print name,varline # not necessary but want to just check
 #        print line
-        elif '## The distribution':
+        elif '## The distribution' in line:
             endline=counter
             print name,endline
         else:
@@ -245,21 +239,21 @@ def slice_data(start,end,filename):
 def pd_conversion(filename):
     nums = get_line_numbers(filename)
     coverage = slice_data(nums[0],nums[1],filename)
-    cov_labels=['locus_coverage', 'sum_coverage','clust_threshold']
+    cov_labels=['number','locus_coverage', 'sum_coverage','clust_threshold']
     df_cov = pd.DataFrame.from_records(coverage, columns=cov_labels)
     return df_cov  
 
 def main():
-    #directory='../rana2brad/*outfiles/*stats.txt'
-    filename='../rana2brad/clust_95_outfiles/clust_95_stats.txt'
-    directory=filename
+    directory='../rana2brad/*outfiles/*stats.txt'
+    #filename='../rana2brad/clust_95_outfiles/clust_95_stats.txt'
+    #directory=filename
     file_list = get_file_list(directory)
     dfs=[]
     for filename in file_list:
         print filename
         pd_df = pd_conversion(filename)
         dfs.append(pd_df)
-#        pd_df.to_csv("./" +filename+ "_sumstats.csv")
+        pd_df.to_csv("./" +filename+ "_sumstats.csv")
     return dfs
 
 print main()
@@ -271,8 +265,7 @@ print main()
 # Now, let's work on merging these dataframes together from each parameter run.
 # They're contained within their _outfile folder, so we need to pull them out and merge them somehow
 # To make life easier, I just did this in terminal using the following:
-# $ mv *outfiles/*snpdist.csv .
-# $ mv *outfiles/*sumstats.csv .
+# $ mv *outfiles/*.csv .
 
 # Now they're all present within our directory of choice (../rana2brad/*.csv)
 
