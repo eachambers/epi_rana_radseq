@@ -1,0 +1,4 @@
+begin trees;
+tree rana = ((((Rber_T1113a,Rber_T1114),(Rneo_T527,Rneo_T480)),((Rbla_D2865,Rbla_D2864),(Rsph_T26064,Rsph_T25870))),(Rchi_T2049,Rchi_T2034a)):0.0;
+tree epi = (((((Eant_T6857,Eant_T6859a),(Etri_T6842,Etri_T6836)),(Ebou_R0156,Ebou_R0153)),(Snub_R0158,Snub_R0159)),(Ahah_R0089a,Ahah_R0090)):0.0;
+end;
