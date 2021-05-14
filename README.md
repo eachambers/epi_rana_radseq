@@ -5,7 +5,7 @@ Comparing ddRAD and 2bRAD methods in two groups of frogs: <i>Epipedobates</i> an
 ## Code
 
 I. Post-processing bioinformatics pipelines
-* [Concatenate iPyrad output .stats files](http://example.com "Title")
+* [Concatenate iPyrad output .stats files](https://github.com/eachambers/epi_rana_radseq/blob/master/extract_data.ipynb)
 * [Transpose 2bRAD output data into Phylip format and calculate replicate loci](LINKHERE)
 * [Calculate the average read depth across samples from 2bRAD data](LINKHERE)
 
