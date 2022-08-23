@@ -1,6 +1,5 @@
 library(tidyverse)
 library(cowplot)
-library(ggplot2)
 library(phylotools)
 
 #' 2bRADnative process data

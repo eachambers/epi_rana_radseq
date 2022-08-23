@@ -16,10 +16,7 @@ library(phylotools)
 #' Before this code is run, make sure you have files that specify the sample
 #' names in the order they appear in the sequence files. These can be found
 #' in the X_bams file.
-
-###########################################################################
-###########################################################################
-
+#' 
 matz2Phylip <- function(input_file_path, names_path){
   
   # tibbles don't transpose quickly so we'll use baseR
@@ -52,11 +49,39 @@ matz2Phylip <- function(input_file_path, names_path){
   dat2phylip(dat, outfile=(paste(input_file_path, ".phylip", sep="")))
 }
 
+#' Calculate and print basic statistics: # sites, loci, SNPs, and some proportions
+#'
+#' @param retab_path path to retab file
+#' @param vcf_varsites path to varsites vcf file
+#'
+calc_basic_stats <- function(retab_path, vcf_varsites){
+  vcf <- read.vcfR(vcf_varsites)
+  retab <- read_tsv(retab_path, col_names = FALSE)
+  
+  nsites <- nrow(retab)
+  
+  nloci <-
+    retab %>% 
+    select(X1) %>% 
+    unique() %>% 
+    nrow()
+  
+  nsnps = nrow(extract.gt(vcf))
+  
+  print(paste0("Number of sites in dataset: ", nsites, sep=""))
+  print(paste0("Number of SNPs in dataset: ", nsnps, sep=""))
+  print(paste0("Number of loci in dataset: ", nloci, sep=""))
+  print(paste0("SNPs per locus: ", nsnps/nloci, sep=""))
+  print(paste0("SNPs per site: ", nsnps/nsites, sep=""))
+}
+
 ###########################################################################
 ###########################################################################
 
 input_file_path = "epiddrad_Matz/epi_ddrad_varsites"
 names_path = "epiddrad_Matz/epi_ddrad_names"
+vcf_varsites = "2_Bioinformatics/Matz_ddRAD/ranaddrad_Matz/rana_ddrad_varsites.vcf.gz"
+retab_path = "2_Bioinformatics/Matz_ddRAD/ranaddrad_Matz/rana_ddrad_retab"
 
 # Run above functions
 matz2Phylip(input_file_path, names_path)
