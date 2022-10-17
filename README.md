@@ -1,6 +1,6 @@
 # epi_rana_radseq
 
-Scripts for comparing ddRAD and 2bRAD methods in two groups of frogs, from [Chambers et al. (XXX)](LINKHERE); raw data files available on Dryad [here](LINKHERE).
+Scripts for comparing ddRAD and 2bRAD methods in two groups of frogs, from Chambers et al. (In Review); raw data files available on Dryad [here](https://doi.org/10.5061/dryad.fbg79cnsp).
 
 ## Code
 
