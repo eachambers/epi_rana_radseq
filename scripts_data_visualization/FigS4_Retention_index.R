@@ -7,7 +7,7 @@ library(cowplot)
 
 theme_set(theme_cowplot())
 
-## The following code generates Fig. S3, which illustrates the retention indices
+## The following code generates Fig. S4, which illustrates the retention indices
 ## and parsimony-informative sites for each sampling depth, taxon, and dataset.
 
 ##    FILES REQUIRED:
@@ -32,16 +32,16 @@ data <-
 
 p.epi <-
 data %>%
-  filter(taxon=="epi") %>%
-  ggplot(aes(x=seq_depth), color=seq_depth) +
-  geom_line(aes(y=percent_PI, group=dataset), size=.5) +
-  geom_point(aes(y=percent_PI), size=2.5) +
+  filter(taxon == "epi") %>%
+  ggplot(aes(x = seq_depth), color = seq_depth) +
+  geom_line(aes(y = percent_PI, group = dataset), size = .5) +
+  geom_point(aes(y = percent_PI), size = 2.5) +
   facet_grid(~dataset) +
-  scale_y_continuous(limits=c(0,70), breaks=c(0,20,40,60)) +
-  theme(axis.text=element_text(size=9),
-        axis.title=element_text(size=10),
+  scale_y_continuous(limits = c(0,70), breaks = c(0,20,40,60)) +
+  theme(axis.text = element_text(size = 9),
+        axis.title = element_text(size = 10),
         strip.background = element_blank(),
-        # axis.title=element_blank(),
+        # axis.title = element_blank(),
         legend.position = "none") +
   ylab("Proportion of parsimony-informative characters (%)") +
   xlab("Sampling depth")
