@@ -1,28 +1,27 @@
-setwd("~/Box Sync/Epipedobates project/SuppMaterials/5_Data_visualization")
-
 library(stringr)
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(cowplot)
+library(here)
 
 theme_set(theme_cowplot())
 
-## The following code constructs Figure S7, which illustrates the proportion of shared loci
+## The following code constructs Figure 11, which illustrates the proportion of shared loci
 ## between replicate samples. There are two replicates in each dataset (Ahah_R0089a&b and
 ## Eant_T6859a&b for Epipedobates; Rber_T1113a&b and Rchi_T2034a&b for Rana), and these
 ## analyses were done for all four sampling depths (t1, t2, t3, total).
 
-##    FILES REQUIRED:
-##          ../2_Bioinformatics/iPyrad_ddRAD/sampling_depth_summary_data/samplingdepth_ddrad_sumstats.csv [made using extract_data.ipynb]
-##          data_files_input_into_scripts/ddRAD_shared_loci_replicates.csv [made using Split_loci_files.ipynb & Shared_loci_replicates.ipynb]
+##    FILES REQUIRED (from DATA):
+##          1_Bioinformatics/iPyrad_ddRAD/sampling_depth_summary_data/samplingdepth_ddrad_sumstats.csv [made using extract_data.ipynb]
+##          data_files_input_into_scripts/ddRAD_shared_loci_replicates.csv [made using Fig11_a_split_loci_files.ipynb & Fig_11_b_shared_loci_replicates.ipynb]
 ##          data_files_input_into_scripts/2bRAD_shared_loci_replicates.csv [made using 2bRADnative_processdata.R]
 
 # Import data -------------------------------------------------------------
 
 ## The following data have info on the number of shared loci between replicate samples:
-rep_ddrad <- read_csv("data_files_input_into_scripts/ddRAD_shared_loci_replicates.csv")
-rep_2brad <- read_csv("data_files_input_into_scripts/2bRAD_shared_loci_replicates.csv") # already contains total loci
+rep_ddrad <- read_csv(here("data_files_input_into_scripts", "ddRAD_shared_loci_replicates.csv"))
+rep_2brad <- read_csv(here("data_files_input_into_scripts", "2bRAD_shared_loci_replicates.csv")) # already contains total loci
 
 
 # Tidy the ddRAD data -----------------------------------------------------
@@ -31,7 +30,7 @@ rep_2brad <- read_csv("data_files_input_into_scripts/2bRAD_shared_loci_replicate
 # some info (total loci per sample and prop shared loci) for our ddRAD data
 
 # The number of total loci per sample is in sumstats:
-sumstats <- read_csv("../2_Bioinformatics/iPyrad_ddRAD/sampling_depth_summary_data/samplingdepth_ddrad_sumstats.csv")
+sumstats <- read_csv("1_Bioinformatics/iPyrad_ddRAD/sampling_depth_summary_data/samplingdepth_ddrad_sumstats.csv")
 
 # Tidy up data ------------------------------------------------------------
 
@@ -39,7 +38,7 @@ sumstats <- read_csv("../2_Bioinformatics/iPyrad_ddRAD/sampling_depth_summary_da
 # also remove unwanted samples; we only want replicate samples
 # Finally, append a col that specifies that this is for ddRAD data only
 loci_ass <-
-sumstats %>%
+  sumstats %>%
   dplyr::select(sample, loci_assembly, file_name) %>%
   filter(sample=="Ahah_R0089a" | sample=="Ahah_R0089b" | 
            sample=="Eant_T6859a" | sample=="Eant_T6859b" |
@@ -129,4 +128,4 @@ p.rana_reps <-
 # Save plots ------------------------------------------------
 
 p.replicates <- plot_grid(p.rana_reps, p.epi_reps, nrow=2, align='v')
-save_plot("FigS6_Shared_loci_replicates.pdf", p.replicates, base_width = 6.9, base_height = 6.8)
+save_plot("Fig11_Shared_loci_replicates.pdf", p.replicates, base_width = 6.9, base_height = 6.8)

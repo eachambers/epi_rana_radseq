@@ -1,5 +1,3 @@
-setwd("~/Box Sync/Epipedobates project/SuppMaterials/5_Data_visualization")
-
 library(ggplot2)
 library(tidyverse)
 library(cowplot)
@@ -7,25 +5,26 @@ library(ggtree) # had to download directly from Github using devtools: YuLab-SMU
 library(ape)
 library(phytools)
 library(ggpmisc)
+library(here)
 
 theme_set(theme_cowplot())
 
-## The following code generates Fig. S5, which illustrates the number of unambiguous
+## The following code generates Fig. 9, which illustrates the number of unambiguous
 ## changes (categorized by state change) along the trees for each dataset and sampling
 ## depth, when the datasets have been re-coded to 0s and 1s. Values were calculated using PAUP.
 
 ##    FILES REQUIRED:
 ##          data_files_input_into_scripts/Plot-Data-for-MS-FigS5.txt
-##          Use Fig4_PAUP_analysis.R to generate base tree figures (p.epi and p.rana)
+##          Use Fig7&S1_PAUP_analysis.R to generate base tree figures (p.epi and p.rana)
 
 ##    STRUCTURE OF CODE:
-##              (1) Base cladograms built [using Fig4_PAUP_analysis.R], one for each Rana and Epipedobates
+##              (1) Base cladograms built [using Fig7&S1_PAUP_analysis.R], one for each Rana and Epipedobates
 ##              (2) Place small inset plots along branches of cladograms
 ##              (3) Place root edge inset plot + blown up plot for y axis scale onto plot
 
 # Import and tidy data -------------------------------------------------------------
 
-dollo <- read_tsv("data_files_input_into_scripts/Plot-Data-for-MS-FigS5.txt")
+dollo <- read_tsv(here("data_files_input_into_scripts", "Plot-Data-for-MS-FigS1.txt"))
 
 # Clean up the data file a bit
 dollo_data <-
@@ -113,13 +112,15 @@ nodebar_format <- function (data, dataset, col, treepart) {
 ## EPI
 epi2b_data_dollo <- epi_data %>% nodebar_format(dataset = "epi2brad", col = prop, treepart = node)
 epidd_data_dollo <- epi_data %>% nodebar_format(dataset = "epiddrad", col = prop, treepart = node)
+
 ## RANA
 rana2b_data_dollo <- rana_data %>% nodebar_format(dataset = "rana2brad", col = prop, treepart = node)
 ranadd_data_dollo <- rana_data %>% nodebar_format(dataset = "ranaddrad", col = prop, treepart = node)
 
+
 # (1) Build the base trees ---------------------------------------------------------
 
-# Use PAUP_analysis.R to build p.epi and p.rana
+# Use Fig7&S1_PAUP_analysis.R to build p.epi and p.rana
   
 # Adapt the nodebar function ---------------------------------------------------
 
@@ -179,6 +180,7 @@ ranadd_bars_dollo <-
   filter(node!=11) %>% 
   nodebar_eac(cols=4:7, ylim=c(0,0.2)) # ymax=120896; propmax=0.198
 
+
 # (2) Place small plots on trees -------------------------------------------------------
 
 epi2b_plot_dollo <-
@@ -192,6 +194,7 @@ rana2b_plot_dollo <-
 
 ranadd_plot_dollo <-
   inset(p.rana, ranadd_bars_dollo, width=0.3, height=0.1, vjust=-.475, hjust=.5)
+
 
 # Build blown up plot -------------------------------
 
@@ -244,6 +247,7 @@ ranadd_inset_dollo <-
   filter(dataset=="ranaddrad" & node==13) %>% 
   dollo_blownup(yaxis=.$prop, ylim=c(0,0.2), ytitle = "Prop. total changes")
 
+
 # Build plot for root edges -----------------------------------------------
 
 # Build root plots
@@ -293,6 +297,7 @@ ranadd_root_dollo <-
   filter(dataset=="ranaddrad" & node==11) %>% 
   root_plots_dollo(yaxis=prop, ylim=c(0,0.2))
 
+
 # (3) Place blown-up and root plots onto main fig --------------------------
 
 ### EPIPEDOBATES
@@ -329,6 +334,7 @@ final_rana2b_dollo <-
 final_ranadd_dollo <-
   rana_final_plot(base_plot = ranadd_plot_dollo, blowup = ranadd_inset_dollo, root = ranadd_root_dollo, title = "ddRAD")
 
+
 # Save four plots ------------------------------------------------------------
 
 ## Proportions
@@ -344,7 +350,7 @@ ggsave("rana2b_dollo_props.pdf", width=8.9, height = 11.89)
 final_ranadd_dollo
 ggsave("ranadd_dollo_props.pdf", width=8.9, height = 11.89)
 
-## If you've plotted sums (and not props), use following dimensions
+## If you've plotted sums (i.e., Fig S1 and not props as in Fig 9), use following dimensions
 
 # ggsave("epi2b_dollo.pdf", width=8.36, height = 11.89)
 # ggsave("epidd_dollo.pdf", width=8.36, height = 11.89)

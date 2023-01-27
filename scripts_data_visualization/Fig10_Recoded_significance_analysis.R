@@ -1,5 +1,3 @@
-setwd("~/Box Sync/Epipedobates project/SuppMaterials/5_Data_visualization")
-
 library(ggplot2)
 library(tidyverse)
 library(cowplot)
@@ -7,26 +5,27 @@ library(ggtree) # had to download directly from Github using devtools: YuLab-SMU
 library(ape)
 library(phytools)
 library(ggpmisc)
+library(here)
 
 theme_set(theme_cowplot())
 
-## The following code generates Fig. 5, showing the number of changes that differ significantly & non-sig.
+## The following code generates Fig. 10, showing the number of changes that differ significantly & non-sig.
 ## from random expectations (another way of putting it: detecting phylogenetic signal of state changes along
 ## the trees). SNP data have been re-coded to 0s and 1s. Values were calculated using PAUP.
 
 ##    FILES REQUIRED:
 ##          data_files_input_into_scripts/recoded_signonsig.txt
-##          Use Fig4_PAUP_analysis.R to generate base tree figures (p.epi and p.rana)
+##          Use Fig7&S1_PAUP_analysis.R to generate base tree figures (p.epi and p.rana)
 
 ##    STRUCTURE OF CODE:
-##              (1) Base cladograms built [using Fig4_PAUP_analysis.R], one for each Rana and Epipedobates
+##              (1) Base cladograms built [using Fig7&S1_PAUP_analysis.R], one for each Rana and Epipedobates
 ##              (2) Place small inset plots along branches of cladograms
 ##              (3) Place root edge inset plot + blown up plot for y axis scale onto plot
 
 
 # Import and tidy data ----------------------------------------------------
 
-sig <- read_tsv("data_files_input_into_scripts/recoded_signonsig.txt")
+sig <- read_tsv(here("data_files_input_into_scripts", "recoded_signonsig.txt"))
 
 # Separate based on nodes
 # Add col for proportion data
@@ -109,13 +108,16 @@ nodebar_format <- function (data, dataset, col) {
 ## EPI
 epi2b_data_sig <- epi_data %>% nodebar_format(dataset = "epi_2brad_total", col = prop)
 epidd_data_sig <- epi_data %>% nodebar_format(dataset = "epi_ddrad_total", col = prop)
+
 ## RANA
 rana2b_data_sig <- rana_data %>% nodebar_format(dataset = "rana_2brad_total", col = prop)
 ranadd_data_sig <- rana_data %>% nodebar_format(dataset = "rana_ddrad_total", col = prop)
 
+
 # (1) Build the base trees ---------------------------------------------------------
 
-# Use PAUP_analysis.R to build p.epi and p.rana
+# Use Fig7&S1_PAUP_analysis.R to build p.epi and p.rana
+
 
 # Adapted nodebar function ---------------------------------------------------
 
@@ -177,6 +179,7 @@ ranadd_bars_sig <-
   filter(node!=11) %>% 
   nodebar_eac(cols=4:5, ylim=c(0,0.15))
 
+
 # (2) Place small plots on trees -------------------------------------------------------
 
 epi2b_plot_sig <-
@@ -190,6 +193,7 @@ rana2b_plot_sig <-
 
 ranadd_plot_sig <-
   inset(p.rana, ranadd_bars_sig, width=0.3, height=0.1, vjust=-.475, hjust=.5)
+
 
 # Build blown up single plot for yaxis scale -------------------------------
 
@@ -237,6 +241,7 @@ ranadd_inset_sig <-
   rana_data %>% 
   filter(DataSetName == "rana_ddrad_total" & node == 13) %>% 
   sig_blownup(yaxis = .$prop, ytitle = "Prop. total changes", ylim=c(0,0.15))
+
 
 # Build plot for root edges -----------------------------------------------
 
@@ -286,6 +291,7 @@ ranadd_root_sig <-
   filter(DataSetName=="rana_ddrad_total" & node==11) %>% 
   root_plots_sig(yaxis = prop, ylim=c(0,0.15))
 
+
 # (3) Place blow-up and root plots onto main fig --------------------------
 
 epi_final_plot <- function (base_plot, blowup, root, title) {
@@ -319,14 +325,10 @@ final_rana2b_sig <-
 final_ranadd_sig <-
   rana_final_plot(base_plot = ranadd_plot_sig, blowup = ranadd_inset_sig, root = ranadd_root_sig, title = "ddRAD")
 
-# Save four plots ------------------------------------------------------------
+# Save plots --------------------------------------------------------------
 
-final_epi2b_sig
-ggsave("epi2b_sig_props.pdf", width=8.36, height = 11.89)
-final_epidd_sig
-ggsave("epidd_sig_props.pdf", width=8.36, height = 11.89)
+plot_grid(final_epi2b_sig, final_epidd_sig, nrow = 1)
+ggsave("epi_sig_props.pdf", width=17, height = 11.89)
 
-final_rana2b_sig
-ggsave("rana2b_sig_props.pdf", width=8.9, height = 11.89)
-final_ranadd_sig
-ggsave("ranadd_sig_props.pdf", width=8.9, height = 11.89)
+plot_grid(final_rana2b_sig, final_ranadd_sig)
+ggsave("rana_sig_props.pdf", width=17, height = 11.89)

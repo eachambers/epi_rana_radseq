@@ -6,18 +6,18 @@ library(here)
 
 theme_set(theme_cowplot())
 
-## The following code generates Figs S2 and S6, which illustrate read depth among reciprocal
-## pipelines (Fig S2) and read depth vs missing data (Fig S6). Avg read depth per sample was
-## calculated using the calculate_depth_stats.R code, and missing data was calculated in PAUP*
+## The following code generates Fig. 4, which illustrate read depth among reciprocal
+## pipelines and missing data. Avg read depth per sample was calculated using the
+## calculate_depth_stats.R code, and missing data was calculated in PAUP*
 ## using the `missdata` function.
 
 ##    FILES REQUIRED:
-##          data/readdepth_missingdata_snps.txt
+##          data_files_input_into_scripts/readdepth_missingdata_snps.txt
 
 
 # Import & process data ---------------------------------------------------
 
-dat <- read_tsv(here("data", "readdepth_missingdata_snps.txt"), col_names = TRUE)
+dat <- read_tsv(here("data_files_input_into_scripts", "readdepth_missingdata_snps.txt"), col_names = TRUE)
 
 # Remove replicate samples
 dat <-
@@ -212,15 +212,5 @@ p_rana <-
 
 # Combine & export plots --------------------------------------------------
 
-# Export Fig S2 (read depth)
-# plot_grid(p_rana, p_epi, nrow=2)
-# ggsave("FigS2_readdepthrecip.pdf", width=11.5, height = 17.9)
-
-# Export Fig XX (read depth and missing data)
 plot_grid(p_rana, p_epi, nrow = 2)
-ggsave("FigXX_readdepthMD.pdf", width = 17.9, height = 11.5)
-
-# Export Fig S6 (read depth vs missing data)
-# plot_grid(rana_MD_p, epi_MD_p, nrow=2)
-# ggsave("FigS2_readdepthrecip.pdf", width=11.5, height = 17.9)
-
+ggsave("Fig4_readdepthMD.pdf", width = 17.9, height = 11.5)

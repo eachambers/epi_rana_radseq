@@ -1,5 +1,3 @@
-setwd("~/Box Sync/Epipedobates project/SuppMaterials/5_Data_visualization")
-
 library(ggplot2)
 library(tidyverse)
 library(cowplot)
@@ -7,10 +5,11 @@ library(ggtree) # had to download directly from Github using devtools: YuLab-SMU
 library(ape)
 library(phytools)
 library(ggpmisc)
+library(here)
 
 theme_set(theme_cowplot())
 
-## The following code generates Figs. 3 and S4, which illustrate the number and proportion
+## The following code generates Figs. 7 and S1, which illustrate the number and proportion
 ## of unambiguous changes ("shared sites") along the trees for each dataset and sampling depth.
 ## These values were calculated using PAUP.
 
@@ -31,7 +30,7 @@ theme_set(theme_cowplot())
 # Load and tidy data ------------------------------------------------------
 
 # These data were taken from parsed files section B #3
-unambig_sums <- read_tsv("data_files_input_into_scripts/unambig_sums.txt")
+unambig_sums <- read_tsv(here("data_files_input_into_scripts", "unambig_sums.txt"))
 
 unambig_sums <-
   unambig_sums %>%
@@ -54,10 +53,11 @@ unambig_sums <-
 data <-
   unambig_sums # change to sums_notips if you only want internal branches plotted
 
+
 # Import trees ------------------------------------------------------------
 
 ## Import tree we'll use to plot with and check node numbering
-trees <- read.nexus("data_files_input_into_scripts/master.nexus")
+trees <- read.nexus(here("data_files_input_into_scripts", "master.nexus"))
 rana <- trees[1]
 epi <- trees[2]
 
@@ -157,6 +157,7 @@ rana2b_data_prop <-
 ranadd_data_prop <- 
   rana_data %>% filter(dataset=="ranaddrad") %>% nodebar_format(yaxis = prop_unambig_change)
 
+
 # (1) Build the "base" trees ----------------------------------------------------------
 
 rana_labs <- c("berlandieri", "berlandieri", "neovolcanica", "neovolcanica",
@@ -198,11 +199,12 @@ p.epi <-
   geom_tiplab(aes(label=paste0('italic(', genera, ')~italic(', species, ')~', e_numbers)), 
   parse=T, size=5) +
   theme(plot.margin=unit(c(2,3,.75,1.5),"cm")) # top, right, bottom, left
+
 p.epi <-
   p.epi %>% 
   flip(15, 16)
 
-
+# ====== RANA =======
 p.rana <-
   ggtree(rana, size=1.5) %<+% 
   ranalabs +
@@ -268,6 +270,7 @@ epidd_bars_prop <- nodebar_eac(epidd_data_prop, cols=2:5, ylim=c(0,0.23)) #ymax=
 
 rana2b_bars_prop <- nodebar_eac(rana2b_data_prop, cols=2:5, ylim=c(0,0.31)) #ymax=0.303
 ranadd_bars_prop <- nodebar_eac(ranadd_data_prop, cols=2:5, ylim=c(0,0.25)) #ymax=0.241
+
 
 # (2) Place inset plots on tree -------------------------------------------------------
 
@@ -357,6 +360,7 @@ ranadd_inset_prop <-
   rana_data %>% 
   filter(dataset=="ranaddrad" & node==13) %>% 
   blowups(yaxis=.$prop_unambig_change, ylim=c(0,0.25), ytitle = "Prop. shared sites") # all=0.25; int=0.32
+
 
 # Build plot for root edges -----------------------------------------------
 
