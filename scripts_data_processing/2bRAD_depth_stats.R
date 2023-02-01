@@ -126,8 +126,8 @@ plot_depth <- function(depth_dataset){
 
 # Run functions, assuming you're in the main supplementary materials folder
 
-input_file_path = "2_Bioinformatics/Matz_2bRAD/rana2brad_Matz/rana_total_depth.depthSample"
-names_path = "2_Bioinformatics/Matz_2bRAD/rana2brad_Matz/rana_names"
+input_file_path = "1_Bioinformatics/Matz_2bRAD/rana2brad_Matz/rana_total_depth.depthSample"
+names_path = "1_Bioinformatics/Matz_2bRAD/rana2brad_Matz/rana_names"
 
 avg_depth_sample <- calc_depth_sample(input_file_path, names_path)
 avg_depth_sample

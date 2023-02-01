@@ -5,7 +5,7 @@ library(here)
 ##    The following takes in the sumstats files which are produced from our iPyrad pipeline
 ##    (they are a portion of the final stats file outputted directly from iPyrad) and processes
 ##    it such that it can be used downstream to generate Fig 3, the clustering threshold
-##    comparison. It also combines ddRAD and 2bRAD results for Fig
+##    comparison. It also combines ddRAD and 2bRAD results for Fig 3.
 
 ##    FILES REQUIRED (from DATA):
 ##          1_Bioinformatics/iPyrad_ddRAD/clust_threshold_summary_data/clustthreshold_ddrad_sumstats.csv

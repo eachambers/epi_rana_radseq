@@ -4,7 +4,7 @@ library(vcfR)
 #'
 #' @param vcf_path path to vcf file
 #'
-#' @return mean_depth_sample, a df with average read depth per sample
+#' @return df with average read depth per sample
 #'
 mean_sample_depth <- function(vcf_path){
   vcf <- read.vcfR(vcf_path)

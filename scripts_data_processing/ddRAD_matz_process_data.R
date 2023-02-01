@@ -3,19 +3,26 @@ library(cowplot)
 library(ggplot2)
 library(phylotools)
 
-#' Process ddRAD data generated with Matz native pipeline
-#' 
+#     This code contains two functions to process Matz Lab output files from
+#     ddRAD data:
+#     1. matz2Phylip() takes output files from Matz Lab pipeline and converts
+#        to Phylip file
+#     2. calc_basic_stats() calculates basic statistics: # sites, loci, SNPs, 
+#        and some proportions
+
+#     Before this code is run, make sure you have files that specify the sample
+#     names in the order they appear in the sequence files. These can be found
+#     in the X_bams file.
+
+###########################################################################
+###########################################################################
+
 #' Takes output files from ddRAD dataset generated with Matz native pipeline and converts to Phylip
 #' 
 #' @param input_file_path is path to varsites and allsites files, should contain
-#' taxon name (epi/rana), sampling depth, and dataset (2brad)
 #' @param names_path is path to sample names (IN ORDER OF BAMS FILE)
 #' 
-#' @return matz2Phylip fxn saves Phylip file with same name as input_file_path
-#' 
-#' Before this code is run, make sure you have files that specify the sample
-#' names in the order they appear in the sequence files. These can be found
-#' in the X_bams file.
+#' @return saves Phylip file with same name as input_file_path
 #' 
 matz2Phylip <- function(input_file_path, names_path){
   

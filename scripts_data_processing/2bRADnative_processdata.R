@@ -2,29 +2,30 @@ library(tidyverse)
 library(cowplot)
 library(phylotools)
 
-#' 2bRADnative process data
-#' 
-#' Takes output files from Matz 2bRAD native pipeline and converts to Phylip, and
-#' also calculates shared sites between replicate samples.
-#' 
-#' @param input_file_path is path to varsites and allsites files, should contain
-#' taxon name (epi/rana), sampling depth, and dataset (2brad)
-#' @param names_path is path to sample names (IN ORDER OF BAMS FILE)
-#' @param retab_file_path is path to retab file generated with retab script
-#' @param retab_names_path is path to retab names (same as names except contains tag and site)
-#' 
-#' @return matz2Phylip fxn saves Phylip file with same name as input_file_path
-#' @return calcReps returns df with tags & sites between replicate samples
-#' @return summaryReps fxn returns no. shared sites between replicate samples for SNP datasets
-#' 
-#' Before this code is run, make sure you have files that specify the sample
-#' names in the order they appear in the sequence files. These can be found
-#' in the X_bams file.
+#     This code contains three functions to process Matz Lab output files from
+#     2bRAD data:
+#     1. matz2Phylip() takes output files from Matz Lab pipeline and converts
+#        to Phylip file
+#     2. calcReps() calculates shared sites (and loci) between replicate samples
+#     3. summaryReps() summarizes shared sites between replicate samples for plotting
+#
+#     Before this code is run, make sure you have files that specify the sample
+#     names in the order they appear in the sequence files. These can be found
+#     in the X_bams file.
 
 
 ###########################################################################
 ###########################################################################
 
+#' Convert Matz Lab output and convert to Phylip file
+#'
+#' @param input_file_path path to varsites and allsites files
+#' @param names_path path to sample names (IN ORDER OF BAMS FILE)
+#'
+#' @return saves Phylip file with same name as input_file_path
+#' @export
+#'
+#' @examples
 matz2Phylip <- function(input_file_path, names_path){
   
   # tibbles don't transpose quickly so we'll use baseR
@@ -50,10 +51,20 @@ matz2Phylip <- function(input_file_path, names_path){
     select(sample, V1)
   # print size of matrix (i.e., no. sites))
   print(paste("Number of sites in alignment =", unique(nchar(as.character(dat$V1)))), sep="")
+  
   # convert and export
   dat2phylip(dat, outfile=(paste(input_file_path, ".phylip", sep="")))
 }
 
+#' Calculate shared loci between sets of replicate samples
+#'
+#' @param retab_file_path path to retab file generated with retab script
+#' @param retab_names_path path to retab names (same as names except contains tag and site)
+#'
+#' @return df with tags & sites between replicate samples
+#' @export
+#'
+#' @examples
 calcReps <- function(retab_file_path, retab_names_path){
   retab <- read.delim(retab_file_path, header=F)
   names <- read.delim(names_path, header=F)
@@ -80,6 +91,15 @@ calcReps <- function(retab_file_path, retab_names_path){
   return(retab)
 }
 
+#' Summarize shared loci between replicate samples for repeatability analysis
+#'
+#' @param retab output retab obj from calcReps function
+#' @param retab_file_path path to retab file generated with retab script
+#'
+#' @return number of shared sites between replicate samples for SNP datasets
+#' @export
+#'
+#' @examples
 summaryReps <- function(retab, retab_file_path){
   summary <-
     retab %>% 
