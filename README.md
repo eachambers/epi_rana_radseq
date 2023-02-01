@@ -1,6 +1,10 @@
-# epi_rana_radseq
+# RADseq phylogenetics in two non-model frog clades
 
-Scripts for comparing ddRAD and 2bRAD methods in two groups of frogs, from Chambers et al. (In Review); associated data files available on Dryad [here](https://doi.org/10.5061/dryad.fbg79cnsp) and raw, demultiplexed fastqs are available on SRA (BioProject PRJNA930137).
+This repository contains code for analyses and data visualization from:
+
+**Chambers EA, Tarvin RD, Santos JC, Ron SR, Betancourth-Cundar M, Hillis DM, Matz MV, & Cannatella DC. (2023) 2b or not 2b? 2bRAD is an effective alternative to ddRAD for phylogenomics. Accepted, *Ecology and Evolution*.**
+
+This paper compared ddRAD and 2bRAD methods in two groups of frogs. Associated data files, code, and other supplementary materials are available on Dryad [here](https://doi.org/10.5061/dryad.fbg79cnsp) and raw, demultiplexed fastqs are available on SRA (BioProject PRJNA930137).
 
 ## Code
 
