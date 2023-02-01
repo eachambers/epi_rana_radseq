@@ -10,6 +10,8 @@ This paper compared ddRAD and 2bRAD methods in two groups of frogs. Associated d
 
 ## Code
 
+The following summarizes the contents of this repository; for a full walkthrough of each analysis, detailing required input files, functions, and outputs, please refer to `Detailed_walkthrough.Rmd`.
+
 **I. Post-processing bioinformatics pipelines**
 * Concatenate iPyrad output .stats files: [extract_data](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/extract_data.ipynb)
 * Transpose 2bRAD output data into Phylip format and calculate replicate loci: [2bRADnative_processdata](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/2bRADnative_processdata.R)
