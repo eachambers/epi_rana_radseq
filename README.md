@@ -6,6 +6,8 @@ This repository contains code for analyses and data visualization from:
 
 This paper compared ddRAD and 2bRAD methods in two groups of frogs. Associated data files, code, and other supplementary materials are available on Dryad [here](https://doi.org/10.5061/dryad.fbg79cnsp) and raw, demultiplexed fastqs are available on SRA (BioProject PRJNA930137).
 
+<img src="Fig_1_cladogram" align="center" height="120"/>
+
 ## Code
 
 **I. Post-processing bioinformatics pipelines**
