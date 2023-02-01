@@ -2,8 +2,9 @@
 
 The following is a detailed walkthrough of all analyses contained in this repository.
 
-A note on file naming:
-* To investigate the effect of different sequencing depths on phylogenetic inference, we targeted a larger number of reads than is typical and then subsampled these. This resulted in four subsets of our data: *t1*, *t2*, *t3* and *total*. The *total* dataset is the total number of reads actually sequenced, and *t1*, *t2*, and *t3* were subsets of the *total* dataset, in increasing order. All data files found on the [Dryad repository](https://doi.org/10.5061/dryad.fbg79cnsp) for this project are named according to these sampling depths. For example, the "epiddrad_t2_4_outfiles/" directory found within the iPyrad ddRAD sampling depth outfiles corresponds to *Epipedobates* output files for the *t2* sampling depth for the ddRAD dataset. The 4 signifies the *min_ind_locus* parameter in iPyrad (all ddRAD datasets were generated with this parameter set to 4).
+*A note on file naming:*
+
+To investigate the effect of different sequencing depths on phylogenetic inference, we targeted a larger number of reads than is typical and then subsampled these. This resulted in four subsets of our data: *t1*, *t2*, *t3* and *total*. The *total* dataset is the total number of reads actually sequenced, and *t1*, *t2*, and *t3* were subsets of the *total* dataset, in increasing order. All data files found on the [Dryad repository](https://doi.org/10.5061/dryad.fbg79cnsp) for this project are named according to these sampling depths. For example, the "epiddrad_t2_4_outfiles/" directory found within the iPyrad ddRAD sampling depth outfiles corresponds to *Epipedobates* output files for the *t2* sampling depth for the ddRAD dataset. The 4 signifies the *min_ind_locus* parameter in iPyrad (all ddRAD datasets were generated with this parameter set to 4).
 
 ### General processing of raw output files
 
