@@ -12,7 +12,7 @@ I. Post-processing bioinformatics pipelines
 * Process ddRAD data generated using Matz Lab pipeline: [ddRAD_matz_process_data](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/ddRAD_matz_process_data.R)
 * Process both 2bRAD and ddRAD clustering threshold data: [clust_threshold_processing](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/clust_threshold_processing.R)
 
-II. Data visualization: Main Figures
+II. Data visualization
 * Data characterization based on clustering threshold: [Fig. 3](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig3_Data_characterization.R)
 * Read depth and missing data: [Fig. 4](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig4_read_depth.R)
 * Parsimony-informative sites and retention indices: [Fig. 6](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig6_Retention_index.R)
