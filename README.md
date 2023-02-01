@@ -6,7 +6,11 @@ This repository contains code for analyses and data visualization from:
 
 This paper compared ddRAD and 2bRAD methods in two groups of frogs. Associated data files, code, and other supplementary materials are available on Dryad [here](https://doi.org/10.5061/dryad.fbg79cnsp) and raw, demultiplexed fastqs are available on SRA (BioProject PRJNA930137).
 
+<img align="center" src="Fig_1_cladogram.png" height="300"/>
+
 ## Code
+
+The following summarizes the contents of this repository; for a full walkthrough of each analysis, detailing required input files, functions, and outputs, please refer to `Detailed_walkthrough.Rmd`.
 
 **I. Post-processing bioinformatics pipelines**
 * Concatenate iPyrad output .stats files: [extract_data](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/extract_data.ipynb)
