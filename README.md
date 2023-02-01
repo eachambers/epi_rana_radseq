@@ -1,32 +1,38 @@
 # epi_rana_radseq
 
-Scripts for comparing ddRAD and 2bRAD methods in two groups of frogs, from Chambers et al. (In Review); raw data files available on Dryad [here](https://doi.org/10.5061/dryad.fbg79cnsp).
+Scripts for comparing ddRAD and 2bRAD methods in two groups of frogs, from Chambers et al. (In Review); associated data files available on Dryad [here](https://doi.org/10.5061/dryad.fbg79cnsp) and raw fastqs are available on the SRA archive [here](XXX).
 
 ## Code
 
 I. Post-processing bioinformatics pipelines
-* [Concatenate iPyrad output .stats files](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/extract_data.ipynb)
-* [Transpose 2bRAD output data into Phylip format and calculate replicate loci](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/2bRADnative_processdata.R)
-* [Calculate the average read depth across samples from 2bRAD data](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/2bRAD_depth_stats.R)
+* Concatenate iPyrad output .stats files: [extract_data](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/extract_data.ipynb)
+* Transpose 2bRAD output data into Phylip format and calculate replicate loci: [2bRADnative_processdata](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/2bRADnative_processdata.R)
+* Clustering threshold analysis on 2bRAD data: [2bRAD_clustthreshold_analysis](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/2bRAD_clustthreshold_analysis.R)
+* Calculate the average read depth across samples from 2bRAD data: [2bRAD_depth_stats](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/2bRAD_depth_stats.R)
+* Process ddRAD data generated using Matz Lab pipeline: [ddRAD_matz_process_data](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/ddRAD_matz_process_data.R)
+* Process both 2bRAD and ddRAD clustering threshold data: [clust_threshold_processing](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/clust_threshold_processing.R)
 
-II. Data visualization
-* [Figs. 3 & S4: Proportions of missing data](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig3_PAUP_analysis.R)
-* [Fig. 4: Calculating missing data](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig4_Missing_data.R)
-* [Fig. 5: Phylogenetic information along a tree](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig5_Recoded_significance_analysis.R)
-* [Fig. S1: Data characteristization by clustering threshold](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/FigS1_Data_characterization.R)
-* [Fig. S3: Parsimony-informative sites and retention indices](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/FigS3_Retention_index.R)
-* [Fig. S5: Proportions of state changes from recoded datasets](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/FigS5_Dollo_analysis.R)
-* [Fig. S7a: Split iPyrad output .loci files](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/FigS7_a_Split_loci_files.ipynb)
-* [Fig. S7b: Calculate shared loci between replicate samples](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/FigS7_b_Shared_loci_replicates.ipynb)
-* [Fig. S7c: Construct Fig. S7](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/FigS7_c_Shared_loci_replicates.R)
+II. Data visualization: Main Figures
+* Data characterization based on clustering threshold: [Fig. 3](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig3_Data_characterization.R)
+* Read depth and missing data: [Fig. 4](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig4_read_depth.R)
+* Parsimony-informative sites and retention indices: [Fig. 6](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig6_Retention_index.R)
+* Proportions of missing data: [Figs. 7 & S1](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig7&S1_PAUP_analysis.R)
+* Calculating missing data: [Fig. 8](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig8_Missing_data.R)
+* Proportions of state changes from recoded datasets: [Fig. 9](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig9_Dollo_analysis.R)
+* Phylogenetic information along a tree: [Fig. 10](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig10_Recoded_significance_analysis.R)
+* Split iPyrad output .loci files: [Fig. 11, step a](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig11_a_Split_loci_files.ipynb)
+* Calculate shared loci between replicate samples: [Fig. 11, step b](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig11_b_Shared_loci_replicates.ipynb)
+* Construct [Fig. 11](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig11_c_Shared_loci_replicates.R)
 
 III. Associated files (for input into above scripts)
-* [Amounts and proportions of missing data (Fig. 3)](https://github.com/eachambers/epi_rana_radseq/tree/master/data/missing_data_snps.txt)
-* [Master Epipedobates and Rana trees for plotting (Figs. 3, 5, S4, and S5)](https://github.com/eachambers/epi_rana_radseq/tree/master/data/master.nexus)
-* [Unambiguous changes (Figs. 3 and S4)](https://github.com/eachambers/epi_rana_radseq/tree/master/data/unambig_sums.txt)
-* [Binary-recoded significant unambiguous changes (Fig. 5)](https://github.com/eachambers/epi_rana_radseq/tree/master/data/recoded_signonsig.txt)
-* [Retention indices and parsimony-informative sites (Fig. S3)](https://github.com/eachambers/epi_rana_radseq/tree/master/data/Retention_PIs.csv)
-* [Standardized node numbering between master tree and PAUP* output (Fig. S5)](https://github.com/eachambers/epi_rana_radseq/tree/master/data/Node_numbering_master_trees.png)
-* [Unambiguous changes for binary-recoded datasets (Fig. S5)](https://github.com/eachambers/epi_rana_radseq/tree/master/data/Plot-Data-for-MS-FigS5.txt)
-* [Shared loci between 2bRAD replicate samples (Fig. S7)](https://github.com/eachambers/epi_rana_radseq/tree/master/data/2bRAD_shared_loci_replicates.csv)
-* [Shared loci between ddRAD replicate samples (Fig. S7)](https://github.com/eachambers/epi_rana_radseq/tree/master/data/ddRAD_shared_loci_replicates.csv)
+* [Depth stats for 2bRAD data](https://github.com/eachambers/epi_rana_radseq/tree/master/data_files_input_into_scripts/2brad_depth.txt)
+* [Read depth data and proportions of missing data (Figs. 4, 8)](https://github.com/eachambers/epi_rana_radseq/tree/master/data_files_input_into_scripts/readdepth_missingdata_snps.txt)
+* [Clustering threshold data (Fig. 3)](https://github.com/eachambers/epi_rana_radseq/tree/master/data_files_input_into_scripts/clust_threshold_data.txt)
+* [Node numbering for trees (Figs. 7, 9, 10, S1](https://github.com/eachambers/epi_rana_radseq/tree/master/data_files_input_into_scripts/Node_numbering_master_trees.png)
+* [Master Epipedobates and Rana trees for plotting (Figs. 7, 9, 10, S1)](https://github.com/eachambers/epi_rana_radseq/tree/master/data_files_input_into_scripts/master.nexus)
+* [Unambiguous changes (Figs. 7 & S1)](https://github.com/eachambers/epi_rana_radseq/tree/master/data_files_input_into_scripts/unambig_sums.txt)
+* [Binary-recoded significant unambiguous changes (Fig. 10)](https://github.com/eachambers/epi_rana_radseq/tree/master/data_files_input_into_scripts/recoded_signonsig.txt)
+* [Retention indices and parsimony-informative sites (Fig. 6)](https://github.com/eachambers/epi_rana_radseq/tree/master/data_files_input_into_scripts/Retention_PIs.csv)
+* [Unambiguous changes for binary-recoded datasets (Fig. 7 & S1)](https://github.com/eachambers/epi_rana_radseq/tree/master/data_files_input_into_scripts/Plot-Data-for-MS-FigS1.txt)
+* [Shared loci between 2bRAD replicate samples (Fig. 11)](https://github.com/eachambers/epi_rana_radseq/tree/master/data_files_input_into_scripts/2bRAD_shared_loci_replicates.csv)
+* [Shared loci between ddRAD replicate samples (Fig. 11)](https://github.com/eachambers/epi_rana_radseq/tree/master/data_files_input_into_scripts/ddRAD_shared_loci_replicates.csv)
