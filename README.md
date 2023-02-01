@@ -7,7 +7,7 @@ Scripts for comparing ddRAD and 2bRAD methods in two groups of frogs, from Chamb
 I. Post-processing bioinformatics pipelines
 * Concatenate iPyrad output .stats files: [extract_data](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/extract_data.ipynb)
 * Transpose 2bRAD output data into Phylip format and calculate replicate loci: [2bRADnative_processdata](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/2bRADnative_processdata.R)
-* Clustering threshold analysis on 2bRAD data: [2bRAD_clustthreshold_analysis](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/2bRAD_clustthreshold_analysis.R)
+* Calculate depth stats on 2bRAD data: [calculate_depth_stats](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/calculate_depth_stats.R)
 * Calculate the average read depth across samples from 2bRAD data: [2bRAD_depth_stats](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/2bRAD_depth_stats.R)
 * Process ddRAD data generated using Matz Lab pipeline: [ddRAD_matz_process_data](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/ddRAD_matz_process_data.R)
 * Process both 2bRAD and ddRAD clustering threshold data: [clust_threshold_processing](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/clust_threshold_processing.R)
