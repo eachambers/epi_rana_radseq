@@ -4,7 +4,7 @@ Scripts for comparing ddRAD and 2bRAD methods in two groups of frogs, from Chamb
 
 ## Code
 
-I. Post-processing bioinformatics pipelines
+**I. Post-processing bioinformatics pipelines
 * Concatenate iPyrad output .stats files: [extract_data](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/extract_data.ipynb)
 * Transpose 2bRAD output data into Phylip format and calculate replicate loci: [2bRADnative_processdata](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/2bRADnative_processdata.R)
 * Calculate depth stats on 2bRAD data: [calculate_depth_stats](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/calculate_depth_stats.R)
@@ -12,7 +12,7 @@ I. Post-processing bioinformatics pipelines
 * Process ddRAD data generated using Matz Lab pipeline: [ddRAD_matz_process_data](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/ddRAD_matz_process_data.R)
 * Process both 2bRAD and ddRAD clustering threshold data: [clust_threshold_processing](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/clust_threshold_processing.R)
 
-II. Data visualization
+**II. Data visualization
 * Data characterization based on clustering threshold: [Fig. 3](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig3_Data_characterization.R)
 * Read depth and missing data: [Fig. 4](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig4_read_depth.R)
 * Parsimony-informative sites and retention indices: [Fig. 6](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig6_Retention_index.R)
@@ -24,7 +24,7 @@ II. Data visualization
 * Calculate shared loci between replicate samples: [Fig. 11, step b](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig11_b_Shared_loci_replicates.ipynb)
 * Construct [Fig. 11](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_visualization/Fig11_c_Shared_loci_replicates.R)
 
-III. Associated files (for input into above scripts)
+**III. Associated files (for input into above scripts)
 * [Depth stats for 2bRAD data](https://github.com/eachambers/epi_rana_radseq/tree/master/data_files_input_into_scripts/2brad_depth.txt)
 * [Read depth data and proportions of missing data (Figs. 4, 8)](https://github.com/eachambers/epi_rana_radseq/tree/master/data_files_input_into_scripts/readdepth_missingdata_snps.txt)
 * [Clustering threshold data (Fig. 3)](https://github.com/eachambers/epi_rana_radseq/tree/master/data_files_input_into_scripts/clust_threshold_data.txt)
