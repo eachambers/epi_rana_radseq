@@ -1,8 +1,8 @@
 # RADseq phylogenetics in two non-model frog clades
 
-This repository contains code for analyses and data visualization from:
+This repository contains code for analyses and data visualizations from:
 
-**Chambers EA, Tarvin RD, Santos JC, Ron SR, Betancourth-Cundar M, Hillis DM, Matz MV, & Cannatella DC. (2023) 2b or not 2b? 2bRAD is an effective alternative to ddRAD for phylogenomics. Accepted, *Ecology and Evolution*.**
+**Chambers EA, Tarvin RD, Santos JC, Ron SR, Betancourth-Cundar M, Hillis DM, Matz MV, & Cannatella DC. (2023) 2b or not 2b? 2bRAD is an effective alternative to ddRAD for phylogenomics. *Ecology and Evolution*. [https://doi.org/10.1002/ece3.9842](https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.9842)**
 
 This paper compared ddRAD and 2bRAD methods in two groups of frogs. Associated data files, code, and other supplementary materials are available on Dryad [here](https://doi.org/10.5061/dryad.fbg79cnsp) and raw, demultiplexed fastqs are available on SRA (BioProject PRJNA930137).
 
@@ -10,7 +10,7 @@ This paper compared ddRAD and 2bRAD methods in two groups of frogs. Associated d
 
 ## Code
 
-The following summarizes the contents of this repository; for a full walkthrough of each analysis, detailing required input files, functions, and outputs, please refer to `Detailed_walkthrough.Rmd`.
+The following summarizes the contents of this repository; for a full walkthrough of each analysis, detailing required input files, functions, and outputs, please refer to **[detailed walkthrough](https://github.com/eachambers/epi_rana_radseq/blob/master/Detailed_walkthrough.md)**.
 
 **I. Post-processing bioinformatics pipelines**
 * Concatenate iPyrad output .stats files: [extract_data](https://github.com/eachambers/epi_rana_radseq/blob/master/scripts_data_processing/extract_data.ipynb)
